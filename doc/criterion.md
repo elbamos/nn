@@ -152,7 +152,7 @@ The loss can be described as:
 
 or in the case of the `weights` argument being specified:
 
-![loss(o, t) = - 1/n sum_i weights[i] * (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?L%28x%2C%20class%29%20%3D%20w_%7Bclass%7D%20*%20%28-x_%7Bclass%7D%20&plus;%20%5Clog%28%5Csum_j%20e%5E%7Bx_j%7D%29%29)
+![loss(o, t) = - 1/n sum_i weights[i] * (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?L%28x%2C%20class%29%20%3D%20w_%7Bclass%7D%20%5Ccdot%20%28-x_%7Bclass%7D%20&plus;%20%5Clog%28%5Csum_j%20e%5E%7Bx_j%7D%29%29)
 
 The losses are averaged across observations for each minibatch.
 
@@ -233,11 +233,11 @@ criterion = nn.BCECriterion([weights])
 
 Creates a criterion that measures the Binary Cross Entropy between the target and the output:
 
-![loss(o, t) = - 1/n sum_i (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20-%201/n%20%5Csum_i%20%28y_i%20%5Ccdot%20%5Clog%20%28x_i%29%20&plus;%20%281%20-%20y_i%29%20*%20%5Clog%281%20-%20x_i%29%29)
+![loss(o, t) = - 1/n sum_i (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20-%201/n%20%5Csum_i%20%28y_i%20%5Ccdot%20%5Clog%20%28x_i%29%20&plus;%20%281%20-%20y_i%29%20%5Ccdot%20%5Clog%281%20-%20x_i%29%29)
 
 or in the case of the weights argument being specified:
 
-![loss(o, t) = - 1/n sum_i weights[i] * (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?loss%28x%2C%20y%29%20%3D%20-%201/n%20%5Csum_i%20w_i%20%5Ccdot%20%28y_i%20%5Ccdot%20%5Clog%28x_i%29%20&plus;%20%281%20-%20y_i%29%20%5Ccdot%20log%281%20-%20x_i%29%29)
+![loss(o, t) = - 1/n sum_i weights[i] * (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20-%201/n%20%5Csum_i%20w_i%20%5Ccdot%20%28y_i%20%5Ccdot%20%5Clog%28x_i%29%20&plus;%20%281%20-%20y_i%29%20%5Ccdot%20log%281%20-%20x_i%29%29)
 
 This is used for measuring the error of a reconstruction in for example an auto-encoder. Note that the targets `t[i]` should be numbers between 0 and 1, for instance, the output of an [`nn.Sigmoid`](transfer.md#nn.Sigmoid) layer.
 
