@@ -237,7 +237,7 @@ Creates a criterion that measures the Binary Cross Entropy between the target an
 
 or in the case of the weights argument being specified:
 
-![loss(o, t) = - 1/n sum_i weights[i] * (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20-%201/n%20%5Csum_i%20w_i%20%5Ccdot%20%28y_i%20%5Ccdot%20%5Clog%28x_i%29%20&plus;%20%281%20-%20y_i%29%20%5Ccdot%20log%281%20-%20x_i%29%29)
+![loss(o, t) = - 1/n sum_i weights[i] * (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%20-1/n%5Csum_i%5Cleft%20%5Cbigg%28%20w_i%20%5Ccdot%20%5Cleft%20%5CBig%28%20%5Cbig%28y_i%20%5Ccdot%20%5Clog%28x_i%29%5Cbig%29%20&plus;%20%5Cbig%28%281-y%29%20%5Ccdot%20%5Clog%281-x_i%29%5Cbig%29%20%5Cright%20%5CBig%29%20%5Cright%20%5Cbigg%29)
 
 This is used for measuring the error of a reconstruction in for example an auto-encoder. Note that the targets `t[i]` should be numbers between 0 and 1, for instance, the output of an [`nn.Sigmoid`](transfer.md#nn.Sigmoid) layer.
 
