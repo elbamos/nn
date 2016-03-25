@@ -148,11 +148,11 @@ This criterion expect a class index (1 to the number of class) as `target` when 
 
 The loss can be described as:
 
-![loss(x, y) = 1/n \sum(y_i * (log(y_i) - x_i))](https://latex.codecogs.com/svg.latex?L%28x%2C%20class%29%20%3D%20-%5Clog%5Cfrac%7Be%5E%7Bx_%7Bclass%7D%7D%7D%7B%5Csum_j%20e%5E%7Bx_j%7D%7D%5C%5C%20%3D%20-x_%7Bclass%7D%20&plus;%20%5Clog%5Csum_j%20e%5E%7Bx_j%7D)
+![loss(x, y) = 1/n \sum(y_i * (log(y_i) - x_i))](https://latex.codecogs.com/svg.latex?%5Cbegin%7Balign*%7D%20L%28x%2C%5Ctext%7Bclass%7D%29%26%3D%20-%5Clog%20%5Cfrac%7Be%5E%7Bx_%7B%5Ctext%7Bclass%7D%7D%7D%7D%7B%5Csum_je%5E%7Bx_j%7D%7D%5C%5C%20%26%3D%20-x_%7B%5Ctext%7Bclass%7D%7D&plus;%5Clog%5Csum_je%5E%7Bx_j%7D%20%5Cend%7Balign*%7D)
 
 or in the case of the `weights` argument being specified:
 
-![loss(o, t) = - 1/n sum_i weights[i] * (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?L%28x%2C%20class%29%20%3D%20w_%7Bclass%7D%20%5Ccdot%20%28-x_%7Bclass%7D%20&plus;%20%5Clog%28%5Csum_j%20e%5E%7Bx_j%7D%29%29)
+![loss(o, t) = - 1/n sum_i weights[i] * (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))](https://latex.codecogs.com/svg.latex?L%28x%2C%5Ctext%7Bclass%7D%29%3Dw_%7B%5Ctext%7Bclass%7D%7D%5Ccdot%28-x_%7B%5Ctext%7Bclass%7D%7D&plus;%5Clog%28%5Csum_je%5E%7Bx_j%7D%29%29)
 
 The losses are averaged across observations for each minibatch.
 
@@ -254,7 +254,7 @@ criterion = nn.MarginCriterion([margin])
 Creates a criterion that optimizes a two-class classification hinge loss (margin-based loss) between input `x` (a `Tensor` of dimension `1`) and output `y` (which is a tensor containing either `1`s or `-1`s).
 `margin`, if unspecified, is by default `1`.
 
-![loss(x, y) = sum_i (max(0, margin - y[i]*x[i])) / x:nElement()](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20%5Cfrac%7B1%7D%7BnElements%7D%5Csum_i%20%5Cmax%280%2C%20margin%20-%20y_i%5Ccdotx_i%29)
+![loss(x, y) = sum_i (max(0, margin - y[i]*x[i])) / x:nElement()](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B1%7D%7BnElements%7D%5Csum_i%5Cmax%280%2Cmargin-y_i%20%5Ccdot%20x_i%29)
 
 The normalization by the number of elements in the input can be disabled by
 setting `self.sizeAverage` to `false`.
@@ -319,7 +319,7 @@ criterion = nn.SoftMarginCriterion()
 
 Creates a criterion that optimizes a two-class classification logisitic loss between input `x` (a `Tensor` of dimension `1`) and output `y` (which is a tensor containing either `1`s or `-1`s).
 
-![loss(x, y) = sum_i (log(1 + exp(-y[i]*x[i]))) / x:nElement()](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20%5Cfrac%7B1%7D%7Bx%3AnElement%28%29%7D%5Csum_i%20%5Clog%281%20&plus;%20e%5E%7B-y_i%5Ccdotx_i%7D%29)
+![loss(x, y) = sum_i (log(1 + exp(-y[i]*x[i]))) / x:nElement()](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B1%7D%7BnElement%28%29%7D%5Csum_i%5Clog%281&plus;e%5E%7B-y_i%20%5Ccdot%20x_i%7D%29)
 
 The normalization by the number of elements in the input can be disabled by
 setting `self.sizeAverage` to `false`.
@@ -385,7 +385,7 @@ criterion = nn.MultiMarginCriterion(p, [weights], [margin])
 
 Creates a criterion that optimizes a multi-class classification hinge loss (margin-based loss) between input `x`  (a `Tensor` of dimension 1) and output `y` (which is a target class index, `1` <= `y` <= `x:size(1)`):
 
-![loss(x, y) = sum_i(max(0, (margin - x[y] - x[i]))^p) / x:size(1)](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20%5Cfrac%7B1%7D%7Bx%3Asize%281%29%7D%5Csum_i%28%5Cmax%280%2C%20%28margin%20-%20x_y%20-%20x_i%29%29%5Ep)
+![loss(x, y) = sum_i(max(0, (margin - x[y] - x[i]))^p) / x:size(1)](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B1%7D%7Bx%3Asize%281%29%7D%5Csum_i%5Cmax%280%2C%20%28margin-x_y-x_i%29%29%5Ep)
 
 
 where `i == 1` to `x:size(1)` and `i ~= y`.
@@ -395,7 +395,7 @@ Optionally, you can give non-equal weighting on the classes by passing a 1D `wei
 The loss function then becomes:
 
 ![loss(x, y) = sum_i(max(0, w[y] * (margin - x[y] - x[i]))^p) / x:size(1)
-](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20%5Cfrac%7B1%7D%7Bx%3Asize%281%29%7D%5Csum_i%28%5Cmax%280%2C%20w_y%20%5Ccdot%20%28margin%20-%20x_y%20-%20x_i%29%29%5Ep)
+](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B1%7D%7Bx%3Asize%281%29%7D%5Csum_i%5Cmax%280%2C%20w_y%20%5Ccdot%20%28margin-x_y-x_i%29%29%5Ep)
 
 This criterion is especially useful for classification when used in conjunction with a module ending in the following output layer:
 
@@ -417,7 +417,7 @@ criterion = nn.MultiLabelMarginCriterion()
 
 Creates a criterion that optimizes a multi-class multi-classification hinge loss (margin-based loss) between input `x`  (a 1D `Tensor`) and output `y` (which is a 1D `Tensor` of target class indices):
 
-![loss(x, y) = sum_ij(max(0, 1 - (x[y[j]] - x[i]))) / x:size(1)](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20%5Cfrac%7B1%7D%7Bx%3Asize%281%29%7D%5Csum_%7Bij%7D%5Cmax%280%2C%201%20-%20%28x_%7By_j%7D%20-%20x_i%29%29)
+![loss(x, y) = sum_ij(max(0, 1 - (x[y[j]] - x[i]))) / x:size(1)](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B1%7D%7Bx%3Asize%281%29%7D%5Csum_%7Bi%2Cj%7D%5Cmax%280%2C1-%28x_y-x_i%29%29)
 
 where `i == 1` to `x:size(1)`, `j == 1` to `y:size(1)`, `y[j] ~= 0`, and `i ~= y[j]` for all `i` and `j`.
 Note that this criterion also works with 2D inputs and targets.
@@ -443,7 +443,7 @@ criterion = nn.MultiLabelSoftMarginCriterion()
 Creates a criterion that optimizes a multi-label one-versus-all loss based on max-entropy, between input `x`  (a 1D `Tensor`) and target `y` (a binary 1D `Tensor`):
 
 ![loss(x, y) = - sum_i (y[i] log( exp(x[i]) / (1 + exp(x[i]))) + (1-y[i]) log(1/(1+exp(x[i])))) / x:nElement()
-](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20%5Cfrac%7B-1%7D%7Bx%3AnElement%28%29%7D%5Csum_i%20%5Cleft%5B%28y_i%20*%20%5Clog%5Cfrac%20%7Be%5E%7Bx_i%7D%7D%7B1%20&plus;%20e%5E%7Bx_i%7D%7D%29%20&plus;%20%28%281-y_i%29%20*%20%5Clog%5Cfrac%7B1%7D%7B1&plus;e%5E%7Bx_i%7D%7D%29%5Cright%5D)
+](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B-1%7D%7Bx%3AnElement%28%29%7D%5Csum_i%5Cleft%20%5B%20%28y_i%20%5Ccdot%20%5Clog%5Cfrac%7Be%5E%7Bx_i%7D%7D%7B1%20&plus;%20e%5E%7Bx_i%7D%7D%29%20&plus;%20%28%281-y_i%29%5Ccdot%5Clog%5Cfrac%7B1%7D%7B1&plus;e%5E%7Bx_i%7D%7D%29%20%5Cright%20%5D)
 
 
 where `i == 1` to `x:nElement()`, `y[i]  in {0,1}`.
@@ -543,7 +543,7 @@ Creates a criterion that can be thought of as a smooth version of the [`AbsCrite
 
 ![                      ⎧ 0.5 * (x_i - y_i)^2, if |x_i - y_i| < 1
 loss(x, y) = 1/n \sum ⎨
-                      ⎩ |x_i - y_i| - 0.5,   otherwise](http://www.sciweavers.org/tex2img.php?eq=L%28x%2Cy%29%3D1%2Fn%5Csum%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Blll%7D0.5%2A%28x_i-y_i%29%5E2%2C%26if%7Cx_i-y_i%7C%3C1%5C%5C%7Cx_i-y_i%7C-0.5%2C%26otherwise%5Cend%7Barray%7D%5Cright&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+                      ⎩ |x_i - y_i| - 0.5,   otherwise](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%20%3D%5Cbegin%7Bcases%7D%20%26%20%7C%7Cx_1%20-%20x_2%7C%7C_1%2C%20%5Ctext%7B%20if%20%7D%20x%3D%3D1%20%5C%5C%20%26%20%5Cmax%280%2C%5Ctext%7Bmargin%7D-%7C%7Cx_1-x_2%7C%7C_1%29%5Ctext%7B%20if%20%7D%20x%3D%3D-1%20%5Cend%7Bcases%7D)
 
 
 If `x` and `y` are `d`-dimensional `Tensor`s with a total of `n` elements, the sum operation still operates over all the elements, and divides by `n`.
@@ -570,7 +570,7 @@ This is usually used for measuring whether two inputs are similar or dissimilar,
 
 ![             ⎧ ||x1 - x2||_1,                  if y ==  1
 loss(x, y) = ⎨
-             ⎩ max(0, margin - ||x1 - x2||_1), if y == -1](http://www.sciweavers.org/tex2img.php?eq=L%28x%2C%20y%29%20%3D%201%2Fn%20%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Blll%7Dx_i%2C%26ify_i%3D%3D1%5C%5C%5Cmax%280%2C%20margin-x_i%29%2C%26ify_i%3D%3D-1%5Cend%7Barray%7D%5Cright&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+             ⎩ max(0, margin - ||x1 - x2||_1), if y == -1](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%20%3D%5Cfrac%7B1%7D%7Bn%7D%5Cbegin%7Bcases%7D%20%26%20x_i%2C%20%5Ctext%7B%20if%20%7D%20y_i%3D%3D1%20%5C%5C%20%26%20%5Cmax%280%2C%5Ctext%7Bmargin%7D-x_i%29%2C%5Ctext%7B%20if%20%7D%20y_i%3D%3D-1%20%5Cend%7Bcases%7D)
 
 If `x` and `y` are `n`-dimensional `Tensor`s, the sum operation still operates over all the elements, and divides by `n` (this can be avoided if one sets the internal variable `sizeAverage` to `false`). The `margin` has a default value of `1`, or can be set in the constructor.
 
@@ -648,7 +648,7 @@ Creates a criterion that measures the loss given  an input `x` = `{x1, x2}`, a t
 
 ![             ⎧ ||x1 - x2||_1,                  if y ==  1
 loss(x, y) = ⎨
-             ⎩ max(0, margin - ||x1 - x2||_1), if y == -1](http://www.sciweavers.org/tex2img.php?eq=L%28x%2Cy%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Blll%7D%7C%7Cx1%20-%20x2%7C%7C_1%2C%26ify%3D%3D1%5C%5C%5Cmax%280%2C%20margin-%7C%7Cx1-x2%7C%7C_1%29%2C%26ify%3D%3D-1%5Cend%7Barray%7D%5Cright&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+             ⎩ max(0, margin - ||x1 - x2||_1), if y == -1](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%20%3D%5Cbegin%7Bcases%7D%20%26%20%7C%7Cx_1%20-%20x_2%7C%7C_1%2C%20%5Ctext%7B%20if%20%7D%20y%3D%3D1%20%5C%5C%20%26%20%5Cmax%280%2C%5Ctext%7Bmargin%7D-%7C%7Cx_1%20-%20x_2%7C%7C_1%29%2C%5Ctext%7B%20if%20%7D%20y%3D%3D-1%20%5Cend%7Bcases%7D)
 
 The `margin` has a default value of `1`, or can be set in the constructor.
 
@@ -669,7 +669,7 @@ The loss function for each sample is:
 
 ![             ⎧ 1 - cos(x1, x2),              if y ==  1
 loss(x, y) = ⎨
-             ⎩ max(0, cos(x1, x2) - margin), if y == -1](http://www.sciweavers.org/tex2img.php?eq=L%28x%2Cy%29%20%3D%20%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Blll%7D1-%5Ccos%28x1%2Cx2%29%2C%26ify%3D%3D1%5C%5C%5Cmax%280%2C%20%5Ccos%28x1%2Cx2%29-margin%29%2C%26ify%3D%3D-1%5Cend%7Barray%7D%5Cright&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+             ⎩ max(0, cos(x1, x2) - margin), if y == -1](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%20%3D%5Cbegin%7Bcases%7D%20%26%201%20-%20%5Ccos%28x_1%2C%20x_2%29%2C%20%5Ctext%7B%20if%20%7D%20y%3D%3D1%20%5C%5C%20%26%20%5Cmax%280%2C%5Ccos%28x_1%2Cx_2%29%20-%5Ctext%7Bmargin%7D%29%2C%5Ctext%7B%20if%20%7D%20y%3D%3D-1%20%5Cend%7Bcases%7D)
 
 For batched inputs, if the internal variable `sizeAverage` is equal to `true`, the loss function averages the loss over the batch samples; if `sizeAverage` is `false`, then the loss function sums over the batch samples. By default, `sizeAverage` equals to `true`.
 
@@ -690,7 +690,7 @@ If `y == 1` then it assumed the first input should be ranked higher (have a larg
 
 The loss function is:
 
-![loss(x, y) = max(0, -y * (x[1] - x[2]) + margin)](https://latex.codecogs.com/svg.latex?L%28x%2C%20y%29%20%3D%20%5Cmax%280%2C%20margin%20-%28y%20*%20%28x_1%20-%20x_2%29%29%29)
+![loss(x, y) = max(0, -y * (x[1] - x[2]) + margin)](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%20%3D%20%5Cmax%280%2C%5Ctext%7Bmargin%7D-%28y%5Ccdot%28x_1-x_2%29%29)
 
 For batched inputs, if the internal variable `sizeAverage` is equal to `true`, the loss function averages the loss over the batch samples; if `sizeAverage` is `false`, then the loss function sums over the batch samples. By default, `sizeAverage` equals to `true`.
 By default, the losses are averaged over observations for each minibatch. However, if the field `sizeAverage` is set to `false`, the losses are instead summed.
