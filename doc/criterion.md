@@ -254,7 +254,7 @@ criterion = nn.MarginCriterion([margin])
 Creates a criterion that optimizes a two-class classification hinge loss (margin-based loss) between input `x` (a `Tensor` of dimension `1`) and output `y` (which is a tensor containing either `1`s or `-1`s).
 `margin`, if unspecified, is by default `1`.
 
-![loss(x, y) = sum_i (max(0, margin - y[i]*x[i])) / x:nElement()](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B1%7D%7BnElements%7D%5Csum_i%5Cmax%280%2Cmargin-y_i%20%5Ccdot%20x_i%29)
+![loss(x, y) = sum_i (max(0, margin - y[i]*x[i])) / x:nElement()](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%20%5Cfrac%7B1%7D%7B%5Ctext%7BnElements%7D%7D%5Csum%5Cmax%280%2C%5Ctext%7Bmargin%7D-y_i%5Ccdot%20x_i%29)
 
 The normalization by the number of elements in the input can be disabled by
 setting `self.sizeAverage` to `false`.
@@ -319,7 +319,7 @@ criterion = nn.SoftMarginCriterion()
 
 Creates a criterion that optimizes a two-class classification logisitic loss between input `x` (a `Tensor` of dimension `1`) and output `y` (which is a tensor containing either `1`s or `-1`s).
 
-![loss(x, y) = sum_i (log(1 + exp(-y[i]*x[i]))) / x:nElement()](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B1%7D%7BnElement%28%29%7D%5Csum_i%5Clog%281&plus;e%5E%7B-y_i%20%5Ccdot%20x_i%7D%29)
+![loss(x, y) = sum_i (log(1 + exp(-y[i]*x[i]))) / x:nElement()](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%20%5Cfrac%7B1%7D%7B%5Ctext%7Bx%3AnElement%28%29%7D%7D%5Csum_i%5Clog%281&plus;e%5E%7B-y_i%5Ccdot%20x_i%7D%29)
 
 The normalization by the number of elements in the input can be disabled by
 setting `self.sizeAverage` to `false`.
@@ -385,7 +385,7 @@ criterion = nn.MultiMarginCriterion(p, [weights], [margin])
 
 Creates a criterion that optimizes a multi-class classification hinge loss (margin-based loss) between input `x`  (a `Tensor` of dimension 1) and output `y` (which is a target class index, `1` <= `y` <= `x:size(1)`):
 
-![loss(x, y) = sum_i(max(0, (margin - x[y] - x[i]))^p) / x:size(1)](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B1%7D%7Bx%3Asize%281%29%7D%5Csum_i%5Cmax%280%2C%20%28margin-x_y-x_i%29%29%5Ep)
+![loss(x, y) = sum_i(max(0, (margin - x[y] - x[i]))^p) / x:size(1)](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%20%5Cfrac%7B1%7D%7B%5Ctext%7Bx%3Asize%281%29%7D%7D%5Csum_i%5Cmax%280%2C%28%5Ctext%7Bmargin%7D-x_y-x_i%29%29%5Ep)
 
 
 where `i == 1` to `x:size(1)` and `i ~= y`.
@@ -395,7 +395,7 @@ Optionally, you can give non-equal weighting on the classes by passing a 1D `wei
 The loss function then becomes:
 
 ![loss(x, y) = sum_i(max(0, w[y] * (margin - x[y] - x[i]))^p) / x:size(1)
-](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B1%7D%7Bx%3Asize%281%29%7D%5Csum_i%5Cmax%280%2C%20w_y%20%5Ccdot%20%28margin-x_y-x_i%29%29%5Ep)
+](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%20%5Cfrac%7B1%7D%7B%5Ctext%7Bx%3Asize%281%29%7D%7D%5Csum_i%5Cmax%280%2Cw_y%20%5Ccdot%28%5Ctext%7Bmargin%7D-x_y-x_i%29%29%5Ep)
 
 This criterion is especially useful for classification when used in conjunction with a module ending in the following output layer:
 
@@ -443,7 +443,7 @@ criterion = nn.MultiLabelSoftMarginCriterion()
 Creates a criterion that optimizes a multi-label one-versus-all loss based on max-entropy, between input `x`  (a 1D `Tensor`) and target `y` (a binary 1D `Tensor`):
 
 ![loss(x, y) = - sum_i (y[i] log( exp(x[i]) / (1 + exp(x[i]))) + (1-y[i]) log(1/(1+exp(x[i])))) / x:nElement()
-](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%5Cfrac%7B-1%7D%7Bx%3AnElement%28%29%7D%5Csum_i%5Cleft%20%5B%20%28y_i%20%5Ccdot%20%5Clog%5Cfrac%7Be%5E%7Bx_i%7D%7D%7B1%20&plus;%20e%5E%7Bx_i%7D%7D%29%20&plus;%20%28%281-y_i%29%5Ccdot%5Clog%5Cfrac%7B1%7D%7B1&plus;e%5E%7Bx_i%7D%7D%29%20%5Cright%20%5D)
+](https://latex.codecogs.com/svg.latex?L%28x%2Cy%29%3D%20%5Cfrac%7B-1%7D%7B%5Ctext%7Bx%3AnElement%28%29%7D%7D%5Csum_i%5Cleft%20%5B%20%28y_i%20%5Ccdot%20%5Clog%20%5Cfrac%7Be%5E%7Bx_i%7D%7D%7B1%20&plus;%20e%5E%7Bx_i%7D%7D%29%20&plus;%20%28%281-y_i%29%5Ccdot%5Clog%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7Bx_i%7D%7D%29%20%5Cright%20%5D)
 
 
 where `i == 1` to `x:nElement()`, `y[i]  in {0,1}`.
